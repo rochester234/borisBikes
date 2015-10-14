@@ -15,4 +15,15 @@ describe DockingStation do
     expect(subject.release_bike).to be_instance_of Bike
   end
 
+  it 'docks something' do
+    bike = Bike.new
+    expect(subject.dock(bike)).to eq(bike)
+  end
+
+  it 'lets us see a bike that has been docked' do
+    bike = Bike.new
+    subject.dock(bike)
+    expect(subject.bike).to eq bike
+  end
+
 end
