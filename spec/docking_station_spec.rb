@@ -51,4 +51,15 @@ describe DockingStation do
       end
     end
 
+    it 'a bike is docked with an working? attribute of false' do
+      my_bike = Bike.new
+      bike_status = my_bike.working?(false)
+      docking_status = subject.dock(my_bike, bike_status)
+      expect(docking_status.working).to eq false
+
+    end
+
+
+
+
 end
