@@ -11,6 +11,17 @@ describe DockingStation do
     expect(subject).to respond_to(:bikes)
   end
 
+  it 'lets us see a bike that has been docked' do
+    bike = Bike.new
+    subject.dock(bike)
+    expect(subject.dock(bike)).to eq bike
+  end
+
+  it 'docks something' do
+    bike = Bike.new
+    expect(subject.dock(bike)).to eq bike
+  end
+
     describe '#release_bike' do
       it 'releases a bike' do
         bike = Bike.new
@@ -31,18 +42,5 @@ describe DockingStation do
         expect { subject.dock(Bike.new) }.to raise_error "The docking station is already at capacity"
       end
     end
-
-  it 'docks something' do
-    bike = Bike.new
-    expect(subject.dock(bike)).to eq(subject.bikes)
-  end
-
-  it 'lets us see a bike that has been docked' do
-    bike = Bike.new
-    subject.dock(bike)
-    expect(subject.bikes).to eq bike
-  end
-
-
 
 end
