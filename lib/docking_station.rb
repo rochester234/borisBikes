@@ -2,23 +2,43 @@ require_relative 'bike'
 
 class DockingStation
 
-# attr_accessor :default_capacity
+#DEFAULT_CAPACITY = 20
+attr_accessor :capacity
 #
-def initialize
-  # @default_capacity = 20
-  @bikes = []
-end
+    def initialize(capacity = 20)
+
+      # if capacity == nil
+      #   @capacity = 20
+      # else
+      #   @capacity = capacity
+      # end
+      @capacity = capacity
+      @bikes = []
+    end
 
 attr_accessor :bikes
 
-def release_bike
-  fail 'There are no bikes available' if @bikes.count == 0
-  @bikes.pop
-end
+    def release_bike
+      fail 'There are no bikes available' if empty?
+      @bikes.pop
+    end
 
-def dock(bike)
-  fail 'The docking station is already at capacity' if @bikes.count == 20
-  @bikes << bike
-  @bikes.last
-end
+    def dock(bike)
+      fail 'The docking station is already at capacity' if full?
+      @bikes << bike
+      @bikes.last
+    end
+
+
+
+private
+
+    def full?
+      @bikes.count >= @capacity ? true : false
+    end
+
+    def empty?
+      @bikes.count == 0 ? true : false
+    end
+
 end

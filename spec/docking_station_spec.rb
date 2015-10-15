@@ -38,8 +38,16 @@ describe DockingStation do
 
     describe '#dock' do
       it 'raises an error when full' do
-        20.times { subject.dock(Bike.new) }
-        expect { subject.dock(Bike.new) }.to raise_error "The docking station is already at capacity"
+        20.times {subject.dock(Bike.new)}
+        expect { subject.dock(Bike.new)}.to raise_error "The docking station is already at capacity"
+      end
+    end
+
+    describe '#initialize' do
+      it 'checking maintenance can add an argument to bike.new'  do
+        #expect(subject).to respond_to(:initialize).with(1).argument
+          station = DockingStation.new(25)
+          expect(station.capacity).to eq 25
       end
     end
 
