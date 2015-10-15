@@ -17,6 +17,7 @@ attr_accessor :working_status
 
     def release_bike
       fail 'There are no bikes available' if empty?
+      fail 'The bike is broken' if @working_status[:bike.object_id] == false
       @bikes.pop
     end
 
