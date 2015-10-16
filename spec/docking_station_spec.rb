@@ -54,7 +54,7 @@ describe DockingStation do
     it 'a bike is docked with an working? attribute of false' do
       my_bike = Bike.new
       bike_status = my_bike.working?(false)
-      docking_status = subject.dock(my_bike, bike_status)
+      docking_status = subject.dock(my_bike)
       expect(docking_status.working).to eq false
 
     end
@@ -62,11 +62,28 @@ describe DockingStation do
     it 'does not release broken bikes' do
       my_bike = Bike.new
       my_bike.working?(false)
-      subject.dock(my_bike, my_bike.working)
+      subject.dock(my_bike)
       expect {subject.release_bike}.to raise_error 'The bike is broken'
+    end
+
+    it 'releases a working bike from mixed array' do
+      my_bike = Bike.new
+      my_bike2 = Bike.new
+      my_bike3 = Bike.new
+
+      my_bike3.working?(false)
+
+      subject.dock(my_bike3)
+      subject.dock(my_bike2)
+      subject.dock(my_bike)
+
+
+      released_bike = subject.release_bike
+
+      expect(released_bike).to eq my_bike2
+
     end
 
 
 
-
-end
+    end
