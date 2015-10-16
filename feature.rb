@@ -1,12 +1,23 @@
 require './lib/docking_station'
 
 station = DockingStation.new
-my_bike = Bike.new
-station.dock(my_bike)
+b1= Bike.new
+b2= Bike.new
+b3= Bike.new
+b4= Bike.new
+station.dock(b1)
 station.release_bike
-my_bike.working?(false)
-station.dock(my_bike, my_bike.working)
-#print station.bikes
+b1.working?(false)
+b3.working?(false)
+station.dock(b1)
+station.dock(b2)
+station.dock(b3)
+station.dock(b4)
+
+p station.bikes
 
 station.release_bike
-print station.bikes
+station.release_bike
+p station.bikes
+
+station.release_bike
